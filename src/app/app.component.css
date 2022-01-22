@@ -4,12 +4,96 @@ div input {
     width: 10rem;
 }
 
-.correctionSpan {
-    padding: 5px;
+#board span {
+    padding: 5px 10px;
+    margin: 0px 1px;
+    border: black 1px solid; 
     border-radius: 5px;
-    border: black 1px solid;
+}
+
+#board .row {
+    margin: 14px 0px;
 }
 
 div.correction {
     margin: 15px 0px;
+}
+
+
+#keyboard {
+margin: 0 8px;
+user-select: none;
+height: 200px;
+}
+
+.row {
+display: flex;
+width: 100%;
+margin: 0 auto 8px;
+/* https://stackoverflow.com/questions/46167604/ios-html-disable-double-tap-to-zoom */
+touch-action: manipulation;
+}
+
+#keyboard button {
+font-family: inherit;
+font-weight: bold;
+border: 0;
+padding: 0;
+margin: 0 6px 0 0;
+height: 58px;
+border-radius: 4px;
+cursor: pointer;
+user-select: none;
+background-color: lightgray;
+color: var(--key-text-color);
+flex: 1;
+display: flex;
+justify-content: center;
+align-items: center;
+text-transform: uppercase;
+-webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
+}
+
+#keyboard button:focus {
+outline: none;
+}
+
+#keyboard button.fade {
+transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+#keyboard button:last-of-type {
+margin: 0;
+}
+
+.half {
+flex: 0.5;
+}
+
+.one {
+flex: 1;
+}
+
+.one-and-a-half {
+flex: 1.5;
+font-size: 12px;
+}
+
+.two {
+flex: 2;
+}
+
+#keyboard button[data-state='correct'] {
+background-color: var(--key-bg-correct);
+color: var(--key-evaluated-text-color);
+}
+
+#keyboard button[data-state='present'] {
+background-color: var(--key-bg-present);
+color: var(--key-evaluated-text-color);
+}
+
+#keyboard button[data-state='absent'] {
+background-color: var(--key-bg-absent);
+color: var(--key-evaluated-text-color);
 }

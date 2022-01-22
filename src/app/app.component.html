@@ -1,30 +1,62 @@
-<div>
-  <div>
-    <input type="text" maxlength="5" minlength="5" [(ngModel)]="attempt"/>
-    <button type="button" (click)="testWord(attempt)" [disabled]="success || attempt.length != 5">Check Word</button>
-
-  </div>
-  <br/>
-  <div class="correction">
-    <span class="correctionSpan" *ngFor="let letter of correction[0]" [ngStyle]="{'background-color': validityColor(letter.validity) }">{{ letter.letter }}</span>
+<div class="container-fluid" style="padding: 0px;">
+  <nav class="navbar navbar-light bg-secondary">
+    <div class="container-fluid">
+      <a class="navbar-brand" style="color: white;">Wordle</a>
+      <form class="d-flex">
+        <button class="btn btn-outline-light" type="button" (click)="refresh()">Refresh</button>
+      </form>
     </div>
-  <div class="correction">
-    <span class="correctionSpan" *ngFor="let letter of correction[1]" [ngStyle]="{'background-color': validityColor(letter.validity) }">{{ letter.letter }}</span>
+  </nav>
+  <div class="row">
+    <div id="board">
+      <div class="alert" [ngClass]="{'alert-danger': isInvalidAttempt, 'alert-light': !isInvalidAttempt}"
+        style="margin: 10px 0px;" role="alert">
+        {{ isInvalidAttempt ? 'That is not one of the possible words' : ''}}
+      </div>
+      <div *ngFor="let attempt of attempts; index as a" class="row content-align-center">
+        <div class="col-sm-3 col-xs-3"></div>
+        <div class="col-sm-6 col-xs-6">
+          <span *ngFor="let letter of attempt; index as l" 
+          [ngStyle]="{color: letter.letter == '?' ? 'white' : 'black'}"
+          [ngClass]="validityColor(letter.validity)">
+            {{ letter.letter }}
+          </span>
+        </div>
+        <div class="col-sm-3 col-xs-3"></div>
+      </div>
+    </div>
   </div>
-  <div class="correction">
-    <span class="correctionSpan" *ngFor="let letter of correction[2]" [ngStyle]="{'background-color': validityColor(letter.validity) }">{{ letter.letter }}</span>
+  <div id="keyboard">
+    <div *ngFor="let row of keys; index as r" class="row">
+      <div *ngIf="r == 1" class="spacer half"></div>
+      <button *ngFor="let key of row" 
+      [ngClass]="validityColor(key.validity)"
+      [ngClass]="{'one-and-a-half':key.letter == 'ENTER' || key.letter == '←'}"
+      (click)="onKeyUp(key.letter)">
+        {{ key.letter == 'Backspace' ? '' : key.letter.toUpperCase() }}
+        <svg *ngIf="key.letter == 'Backspace'" xmlns="http://www.w3.org/2000/svg" height="24"
+          viewBox="0 0 24 24" width="24">
+          <path fill="black"
+            d="M22 3H7c-.69 0-1.23.35-1.59.88L0 12l5.41 8.11c.36.53.9.89 1.59.89h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H7.07L2.4 12l4.66-7H22v14zm-11.59-2L14 13.41 17.59 17 19 15.59 15.41 12 19 8.41 17.59 7 14 10.59 10.41 7 9 8.41 12.59 12 9 15.59z">
+          </path>
+        </svg>
+      </button>
+      <div *ngIf="r == 1" class="spacer half"></div>
+    </div>
   </div>
-  <div class="correction">
-    <span class="correctionSpan" *ngFor="let letter of correction[3]" [ngStyle]="{'background-color': validityColor(letter.validity) }">{{ letter.letter }}</span>
-  </div>
-  <div class="correction">
-    <span class="correctionSpan" *ngFor="let letter of correction[4]" [ngStyle]="{'background-color': validityColor(letter.validity) }">{{ letter.letter }}</span>
-  </div>
-  <div class="correction">
-    <span class="correctionSpan" *ngFor="let letter of correction[5]" [ngStyle]="{'background-color': validityColor(letter.validity) }">{{ letter.letter }}</span>
-  </div>
-  <br/>
-  <div *ngIf="success">
-    Success! Word is "{{selectedWord}}".
+  <div class="modal fade" id="successModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Success!</h5>
+        </div>
+        <div class="modal-body">
+          You successfully guessed the word!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="refresh()">New Word</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
