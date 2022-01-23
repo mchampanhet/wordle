@@ -44,6 +44,12 @@
       <div *ngIf="r == 1" class="spacer half"></div>
     </div>
   </div>
+  <p-dialog header="Success!" [(visible)]="success" (onHide)="refresh()" [style]="{width: '50vw'}">
+      You successfully guessed the word '{{ selectedWord }}'!
+    <ng-template pTemplate="footer">
+      <p-button type="button" class="p-button p-button-primary" label="Next Word" icon="pi pi-check" (onClick)="refresh()"></p-button>
+    </ng-template>
+  </p-dialog>
   <div class="modal fade" id="successModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
