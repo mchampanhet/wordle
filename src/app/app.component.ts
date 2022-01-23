@@ -93,6 +93,10 @@ export class AppComponent implements OnInit {
     new keyMapItem("M", 2,7),
   ];
 
+  get showModal() {
+    return this.success || this.currentAttempt == 6;
+  }
+
   ngOnInit() {
     // this.dictionary = this.dictionary.map(x => x.toUpperCase());
     this.dictionary = Array.from(dictionary).map(x => x.toUpperCase());

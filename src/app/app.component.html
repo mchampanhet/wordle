@@ -44,8 +44,8 @@
       <div *ngIf="r == 1" class="spacer half"></div>
     </div>
   </div>
-  <p-dialog header="Success!" [(visible)]="success" (onHide)="refresh()" [style]="{width: '50vw'}">
-      You successfully guessed the word '{{ selectedWord }}'!
+  <p-dialog header="Success!" [visible]="showModal" (onHide)="refresh()" [style]="{width: '50vw'}">
+      {{ (success ? 'You successfully guessed the word ' : 'Unfortunately, you weren\'t able to guess ') + selectedWord.toLowerCase() }}
     <ng-template pTemplate="footer">
       <p-button type="button" class="p-button p-button-primary" label="Next Word" icon="pi pi-check" (onClick)="refresh()"></p-button>
     </ng-template>
