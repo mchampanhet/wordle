@@ -1,12 +1,13 @@
+<div class="">
+  <div class="flex flex-row justify-content-between flex-wrap bg-secondary">
+      <div class="flex align-items-center justify-content-center w-2rem h-2rem m-2"></div>
+      <div class="flex align-items-center justify-content-center w-20rem h-3rem font-bold text-gray-900 border-round m-2 text-4xl text-white"><i class="pi pi-question-circle text-5xl m-2"></i>Wordle-ish</div>
+      <div class="flex align-items-center justify-content-center w-8rem h-3rem font-bold text-gray-900 border-round m-2">
+        <button pButton type="button" class="p-button-outlined border-white text-white" icon="pi pi-refresh" label="Refresh" (click)="refresh()"></button>
+      </div>
+  </div>
+</div>
 <div class="container-fluid" style="padding: 0px;">
-  <nav class="navbar navbar-light bg-secondary">
-    <div class="container-fluid">
-      <a class="navbar-brand" style="color: white;">Wordle</a>
-      <form class="d-flex">
-        <button class="btn btn-outline-light" type="button" (click)="refresh()">Refresh</button>
-      </form>
-    </div>
-  </nav>
   <div class="row">
     <div id="board">
       <div class="alert" [ngClass]="{'alert-danger': isInvalidAttempt, 'alert-light': !isInvalidAttempt}"
