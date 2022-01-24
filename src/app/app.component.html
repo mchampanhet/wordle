@@ -1,9 +1,13 @@
 <p-toast position="top-center"></p-toast>
 <div class="flex flex-row justify-content-between flex-wrap bg-secondary">
-    <div class="flex align-items-center justify-content-center w-2rem h-2rem m-2"></div>
-    <div class="flex align-items-center justify-content-center w-20rem h-3rem font-bold text-gray-900 border-round m-2 text-4xl text-white"><i class="pi pi-question-circle text-5xl m-2"></i>Wordle-ish</div>
-    <div class="flex align-items-center justify-content-center w-8rem h-3rem font-bold text-gray-900 border-round m-2">
-      <button pButton type="button" class="p-button-outlined border-white text-white" icon="pi pi-refresh" label="Refresh" (click)="refresh()"></button>
+    <div class="flex align-items-center justify-content-center w-4rem h-2rem m-2 md:w-8rem"></div>
+    <div class="flex align-items-center justify-content-center w-10rem h-3rem font-bold text-gray-900 border-round m-2 text-xl text-white md:w-15rem md:text-4xl">
+      <i class="pi pi-question-circle text-2xl m-2 md:text-5xl"></i>
+      Wordle-ish
+    </div>
+    <div class="flex align-items-center justify-content-center w-4rem h-3rem font-bold text-gray-900 border-round m-2 md:w-8rem">
+      <button pButton type="button" class="flex md:hidden p-button-sm p-button-outlined border-white text-white w-3rem" (click)="refresh()" icon="pi pi-refresh"></button>
+      <button pButton type="button" class="hidden md:flex p-button-sm p-button-outlined border-white text-white w-9rem" (click)="refresh()" icon="pi pi-refresh" label="Refresh"></button>
     </div>
 </div>
 <div class="container-fluid" style="padding: 0px;">
