@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import * as dictionary from './dictionary.json';
 
 @Component({
@@ -27,7 +28,6 @@ export class AppComponent implements OnInit {
   success = false;
   currentAttempt = 0;
   currentLetter = 0;
-  isInvalidAttempt = false;
   keys = [
     [ 
       new attemptLetter("Q",0),
@@ -93,6 +93,12 @@ export class AppComponent implements OnInit {
     new keyMapItem("M", 2,7),
   ];
 
+  get showModal() {
+    return this.success || this.currentAttempt == 6;
+  }
+
+  constructor(private messageService: MessageService) {}
+
   ngOnInit() {
     // this.dictionary = this.dictionary.map(x => x.toUpperCase());
     this.dictionary = Array.from(dictionary).map(x => x.toUpperCase());
@@ -113,7 +119,6 @@ export class AppComponent implements OnInit {
     } else if (key == 'Backspace' && this.currentLetter > 0) {
       const letterToErase = this.currentLetter == 4 ? 4 : this.currentLetter - 1;
       this.attempts[this.currentAttempt][this.currentLetter - 1].letter = "?";
-      this.isInvalidAttempt = false;
       this.currentLetter--;
     } else if (key == 'Enter') {
       this.testWord(this.attempts[this.currentAttempt]);
@@ -125,11 +130,10 @@ export class AppComponent implements OnInit {
     var attemptString = attempt.map(x => x.letter).join('');
     console.log(attemptString);
     if (!this.dictionary.includes(attemptString)) {
-      this.isInvalidAttempt = true;
+      this.messageService.add({severity:'error', summary: 'That is not one of the possible words'});
       return;
     }
 
-    this.isInvalidAttempt = false;
     var realChars = this.selectedWord.toUpperCase().split("");
     var attemptChars = attemptString.toUpperCase().split("");
     attemptChars.forEach((x, index) => {
