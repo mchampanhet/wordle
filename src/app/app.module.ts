@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 
 import { AppComponent } from './app.component';
@@ -15,9 +17,10 @@ import { AppComponent } from './app.component';
     BrowserModule,
     DialogModule,
     BrowserAnimationsModule,
-    ButtonModule
+    ButtonModule,
+    ToastModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
