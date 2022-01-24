@@ -40,25 +40,10 @@
       <div *ngIf="r == 1" class="spacer half"></div>
     </div>
   </div>
-  <p-dialog header="Success!" [visible]="showModal" (onHide)="refresh()" [style]="{width: '50vw'}">
+  <p-dialog [header]="success ? 'Success!' : 'Womp womp!'" [visible]="showModal" (onHide)="refresh()" [style]="{width: '50vw'}">
       {{ (success ? 'You successfully guessed the word ' : 'Unfortunately, you weren\'t able to guess ') + selectedWord.toLowerCase() }}
     <ng-template pTemplate="footer">
-      <p-button type="button" class="p-button p-button-primary" label="Next Word" icon="pi pi-check" (onClick)="refresh()"></p-button>
+      <p-button type="button" class="p-button p-button-secondary" label="Next Word" icon="pi pi-check" (onClick)="refresh()"></p-button>
     </ng-template>
   </p-dialog>
-  <div class="modal fade" id="successModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Success!</h5>
-        </div>
-        <div class="modal-body">
-          You successfully guessed the word!
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="refresh()">New Word</button>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
