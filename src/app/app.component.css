@@ -23,7 +23,7 @@ div.correction {
 #keyboard {
 margin: 0 8px;
 user-select: none;
-height: 200px;
+height: 208px;
 }
 
 .row {
@@ -44,7 +44,7 @@ height: 58px;
 border-radius: 4px;
 cursor: pointer;
 user-select: none;
-background-color: lightgray;
+background-color: white;
 color: var(--key-text-color);
 flex: 1;
 display: flex;
@@ -75,7 +75,7 @@ flex: 1;
 }
 
 .one-and-a-half {
-flex: 1.5;
+flex: 1.5 !important;
 font-size: 12px;
 }
 
@@ -96,4 +96,8 @@ color: var(--key-evaluated-text-color);
 #keyboard button[data-state='absent'] {
 background-color: var(--key-bg-absent);
 color: var(--key-evaluated-text-color);
+}
+
+.main-container-full-page-height {
+    height: calc(100vh - 64px);
 }

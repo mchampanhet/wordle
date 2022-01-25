@@ -176,7 +176,14 @@ export class AppComponent implements OnInit {
   }
 
   validityColor(validity: number) {
-    return validity == 2 ? 'bg-success' : validity == 1 ? 'bg-warning' : validity == -1 ? 'bg-secondary' : 'bg-light';
+    return validity == 2 ? 'bg-success' : validity == 1 ? 'bg-warning' : validity == -1 ? 'bg-secondary' : 'bg-white';
+  }
+
+  getKeyClasses(isOneAndAHalf: boolean, validity: number) {
+    var classes = new Array<string>();
+    classes.push(this.validityColor(validity));
+    if (isOneAndAHalf) classes.push('one-and-a-half');
+    return classes;
   }
 
   refresh() {
