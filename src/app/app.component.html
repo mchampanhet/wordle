@@ -11,19 +11,19 @@
     </div>
 </div>
 <!-- <div class="container-fluid" style="padding: 0px;"> -->
-<div class="main-container-full-page-height">
+<div class="main-container-full-page-height" style="height:calc(100vh - 64px); background-color: #F7F7F7;">
   <!-- <div class="flex flex-row justify-content-center">
     <div class="flex align-items-center justify-content-center w-1 h-2 bg-primary border-round p-3">
       A
     </div>
   </div> -->
-  <div class="row">
-    <div id="board">
+  <div class="py-6" style="height: calc(100vh - 272px)">
+    <div id="board" style="height: 100%">
       <div *ngFor="let attempt of attempts; index as a" class="flex justify-content-center col-10 col-offset-1 md:col-6 md:col-offset-3">
           <div *ngFor="let letter of attempt; index as l" 
           [ngStyle]="{color: letter.letter == '?' ? 'white' : 'black'}"
           [ngClass]="validityColor(letter.validity)"
-          class="flex align-items-center justify-content-center w-3rem h-3rem md:w-4rem md:h-4rem ml-1 border-round border-1 border-gray-900 text-xl md:text-3xl">
+          class="flex align-items-center justify-content-center w-3rem h-3rem md:w-4rem md:h-4rem ml-1 border-round border-3 border-gray-500 text-xl md:text-3xl font-bold">
             {{ letter.letter }}
         </div>
       </div>
